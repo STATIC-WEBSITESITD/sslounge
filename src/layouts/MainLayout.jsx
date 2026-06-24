@@ -3,9 +3,12 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppSticky from '../components/WhatsAppSticky'
+import PageMeta from '../components/PageMeta'
+import { getPageSeo } from '../constants/seo'
 
 function MainLayout() {
   const location = useLocation()
+  const seo = getPageSeo(location.pathname)
 
   useEffect(() => {
     const initLegacyScripts = async () => {
@@ -23,6 +26,7 @@ function MainLayout() {
 
   return (
     <>
+      <PageMeta title={seo.title} description={seo.description} keywords={seo.keywords} />
       <Header />
       <Outlet />
       <Footer />
